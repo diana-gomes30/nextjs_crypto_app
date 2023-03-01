@@ -8,8 +8,12 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Navbar />
-      <main>{children}</main>
+      <div className="m-0 p-0 box-border">
+        <Navbar />
+        <div className="bg-secundary-dark-blue">
+          <main>{children}</main>
+        </div>
+      </div>
     </>
   );
 }
