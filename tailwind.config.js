@@ -16,12 +16,6 @@ module.exports = {
         light: '#e0e1dd',
       },
     },
-    colors: {
-      'primary-dark-blue': '#0d1b2a',
-      'secundary-dark-blue': '#1b263b',
-      'third-dark-blue': '#415a77',
-      light: '#e0e1dd',
-    },
   },
   plugins: [],
 };

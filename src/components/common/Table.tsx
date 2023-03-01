@@ -1,16 +1,34 @@
-import { Coin } from '../interfaces/coins';
+import { Coin } from '../../interfaces/coins';
 import { ItemTable } from './ItemTable';
 
 interface TableProps {
   coins: Coin[];
-  //coinsWatchlist: string[];
   onWatchlist: (id: string) => void;
 }
 
-export const Table = ({
-  coins,
-  /*coinsWatchlist,*/ onWatchlist,
-}: TableProps) => {
+[
+  {
+    id: 'column1',
+    label: 'Coin',
+  },
+  {
+    id: 'column2',
+    name: 'Price',
+  },
+];
+
+[
+  {
+    column1: 'Bitcoin',
+    column2: 20000000000000000000,
+  },
+  {
+    column1: 'Ethereum',
+    column2: 10000000000000000000,
+  },
+];
+
+export const Table = ({ coins }: TableProps) => {
   return (
     <div className="table-coins">
       <table>
@@ -30,12 +48,7 @@ export const Table = ({
           {coins
             ?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))
             .map((coin: Coin) => (
-              <ItemTable
-                key={coin.id}
-                coin={coin}
-                isSelected={false} //coins?.includes(coinsWatchlist.id)}
-                onWatchlist={onWatchlist}
-              />
+              <ItemTable key={coin.id} coin={coin} isSelected={false} />
             ))}
         </tbody>
       </table>

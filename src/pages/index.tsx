@@ -1,10 +1,10 @@
-import { getCoins } from '@/api/coins';
-import { Table } from '@/components/Table';
-import { TableOptions } from '@/components/TableOptions';
+import { getCoins } from '@/fetchers/coins';
+import { Table } from '@/components/common/Table';
+import { TableOptions } from '@/components/common/TableOptions';
 import { Coin } from '@/interfaces/coins';
 import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
-import { urls } from '@/api/urls';
+import { urls } from '@/fetchers/urls';
 
 export const getServerSideProps = async () => {
   const coins = await getCoins();

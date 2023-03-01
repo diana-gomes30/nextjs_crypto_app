@@ -1,18 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { Coin } from '../interfaces/coins';
+import { Coin } from '../../interfaces/coins';
+import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
+import Image from 'next/image';
 
 interface ItemTableProps {
   coin: Coin;
   isSelected: boolean;
-  onWatchlist: (id: string) => void;
 }
 
-export const ItemTable = ({
-  coin,
-  isSelected,
-  onWatchlist,
-}: ItemTableProps) => {
+export const ItemTable = ({ coin, isSelected }: ItemTableProps) => {
   const roundNumber = (number: number) => {
     return Math.round(number * 10) / 10;
   };
@@ -32,7 +29,6 @@ export const ItemTable = ({
     <tr key={coin.id} className="data-table">
       <td>
         <FontAwesomeIcon
-          onClick={() => onWatchlist(coin.id)}
           icon={faStar}
           className="favorite-icon"
           style={{ color: isSelected ? 'yellow' : '' }}
@@ -40,7 +36,7 @@ export const ItemTable = ({
       </td>
       <td className="l-align">{coin.market_cap_rank}</td>
       <td className="name-image">
-        <img alt="Coin Icon" src={coin.image} />
+        <Image alt="Coin Icon" src={coin.image} width={100} height={100} />
         {coin.name}
       </td>
       <td className="r-align">{formatToMoney(coin.current_price)}</td>

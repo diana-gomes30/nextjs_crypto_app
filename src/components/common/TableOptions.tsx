@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { NumPerPageOption } from './NumPerPageOption';
-import { SearchArea } from './SearchArea';
+import { NumPerPageOption } from '../index/NumPerPageOption';
+import { SearchArea } from '../index/SearchArea';
 
 interface TableOptionsProps {
   onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;

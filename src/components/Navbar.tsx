@@ -8,10 +8,10 @@ const Navbar = () => (
     </div>
     <ul>
       <div className="flex gap-[1em] text-[18px] text-center">
-        <li className="py-[5px] px-[24px] hover:bg-third-dark-blue rounded-[5px] transition ease-in delay-[0.1s]">
+        <li className="py-1 px-6 hover:bg-third-dark-blue rounded-md transition ease-in delay-100">
           <Link href="/top10">Top 10</Link>
         </li>
-        <li className="py-[5px] px-[24px] hover:bg-third-dark-blue rounded-[5px] transition ease-in delay-[0.1s]">
+        <li className="py-1 px-6 hover:bg-third-dark-blue rounded-md transition ease-in delay-100">
           <Link href="/watchlist">Watchlist</Link>
         </li>
       </div>
