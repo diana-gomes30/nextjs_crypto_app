@@ -11,6 +11,14 @@ export interface Coin {
   market_cap: number;
 }
 
+export interface CryptoCurrency {
+  id: string;
+  market_cap_rank: number;
+  image: string;
+  name: string;
+  symbol: string;
+}
+
 export interface Options {
   page: number;
   numPerPage: number;
