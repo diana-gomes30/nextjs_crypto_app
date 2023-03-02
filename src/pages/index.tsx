@@ -35,10 +35,10 @@ export default function Home({
     //setSearch(event.target.value);
   };
 
-  const changeNumPerPage = (event: ChangeEvent<HTMLSelectElement>) => {
+  const changeNumPerPage = (value: number) => {
     setOptions((prevValue) => ({
       ...prevValue,
-      numPerPage: +event.target.value,
+      numPerPage: value,
     }));
   };
 

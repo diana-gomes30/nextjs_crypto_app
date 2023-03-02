@@ -5,7 +5,7 @@ import { SearchArea } from '../index/SearchArea';
 interface TableOptionsProps {
   onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
   options: { numPerPage: number; searchByValue: string };
-  onChangeSelect: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChangeSelect: (value: number) => void;
   onSearchClick: () => void;
 }
 
@@ -22,7 +22,7 @@ export const TableOptions = ({
       onSearchClick={onSearchClick}
     />
     <NumPerPageOption
-      onChangeSelect={onChangeSelect}
+      onClick={onChangeSelect}
       numPerPage={options.numPerPage}
     />
   </div>
