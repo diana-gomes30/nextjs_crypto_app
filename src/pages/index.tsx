@@ -23,6 +23,7 @@ export default function Home({
   fallback: Record<string, Coin[]>;
 }) {
   const [options, setOptions] = useState({ numPerPage: 15, searchByValue: '' });
+  const [isSearchSelected, setIsSearchSelected] = useState(false);
 
   const { data, error, isLoading, mutate } = useSWR(
     urls.markets(options.numPerPage),
@@ -32,7 +33,16 @@ export default function Home({
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    //setSearch(event.target.value);
+    setOptions((prevValue) => ({
+      ...prevValue,
+      searchByValue: event.target.value,
+    }));
+  };
+
+  const onSearchClick = (value: boolean) => {
+    console.log('Value: ' + value);
+    setIsSearchSelected(value);
+    console.log('Final Value: ' + isSearchSelected);
   };
 
   const changeNumPerPage = (value: number) => {
@@ -41,15 +51,6 @@ export default function Home({
       numPerPage: value,
     }));
   };
-
-  const searchByValue = () => {
-    setOptions((prevValue) => ({
-      ...prevValue,
-      valueToSearch: '',
-    }));
-  };
-
-  const handleClick = () => {};
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -64,13 +65,19 @@ export default function Home({
 
   return (
     <div>
-      <TableOptions
-        onChangeInput={handleChange}
-        onChangeSelect={changeNumPerPage}
-        onSearchClick={searchByValue}
-        options={options}
-      />
-      <Table coins={data} onWatchlist={handleClick} />
+      <div className="pt-7 pb-10">
+        <TableOptions
+          onChangeInput={handleChange}
+          onSearchClick={onSearchClick}
+          isSearchSelected={isSearchSelected}
+          cryptoCurrencies={[]}
+          options={options}
+          onChangeSelect={changeNumPerPage}
+        />
+      </div>
+      <div className="w-3/4 m-auto">
+        <Table coins={data} />
+      </div>
     </div>
   );
 }

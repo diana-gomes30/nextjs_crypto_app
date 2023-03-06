@@ -3,7 +3,6 @@ import { ItemTable } from './ItemTable';
 
 interface TableProps {
   coins: Coin[];
-  onWatchlist: (id: string) => void;
 }
 
 [
