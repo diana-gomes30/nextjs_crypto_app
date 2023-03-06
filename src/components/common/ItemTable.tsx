@@ -27,7 +27,7 @@ export const ItemTable = ({ coin, isSelected }: ItemTableProps) => {
   return (
     <tr
       key={coin.id}
-      className="border-b-2 border-solid border-light text-light align-middle hover: bg-first-dark-blue"
+      className="border-b-2 border-solid border-light text-light align-middle bg-first-dark-blue hover:bg-third-dark-blue"
     >
       <td className="text-center p-2">
         <FontAwesomeIcon
