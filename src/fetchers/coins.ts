@@ -1,5 +1,5 @@
-import { Coin } from '@/interfaces/coins';
-import { urls } from './urls';
+import { Coin } from '@interfaces/coins';
+import { urls } from '@fetchers/urls';
 
 interface Data {
   coins: {

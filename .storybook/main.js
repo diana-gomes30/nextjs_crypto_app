@@ -24,8 +24,26 @@ module.exports = {
   core: {
     builder: '@storybook/builder-webpack5',
   },
-
   features: {
     postcss: true,
+  },
+  webpackFinal: async (config) => {
+    /**
+     * Add support for alias-imports
+     * @see https://github.com/storybookjs/storybook/issues/11989#issuecomment-715524391
+     */
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, '../src'),
+      '@components': path.resolve(__dirname, '../src/components'),
+      '@fetchers': path.resolve(__dirname, '../src/fetchers'),
+      '@interfaces': path.resolve(__dirname, '../src/interfaces'),
+      '@mocks': path.resolve(__dirname, '../src/mocks'),
+      '@pages': path.resolve(__dirname, '../src/pages'),
+      '@stories': path.resolve(__dirname, '../src/stories'),
+      '@styles': path.resolve(__dirname, '../src/styles'),
+    };
+
+    return config;
   },
 };

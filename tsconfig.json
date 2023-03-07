@@ -20,6 +20,13 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@components/*": ["./src/components/*"],
+      "@fetchers/*": ["./src/fetchers/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
+      "@mocks/*": ["./src/mocks/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@stories/*": ["./src/stories/*"],
+      "@styles/*": ["./src/styles/*"],
       "@/*": ["./src/*"]
     }
   },

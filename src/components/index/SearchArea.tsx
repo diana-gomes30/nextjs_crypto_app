@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ChangeEvent } from 'react';
 import { CryptoCurrency } from '@/interfaces/coins';
-import { SearchDropdownItem } from '../common/SearchDropdownItem';
+import { SearchDropdownItem } from '@/components/common/SearchDropdownItem';
 
 interface SearchAreaProps {
   onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;

@@ -1,4 +1,4 @@
-import { CryptoCurrency } from '@/interfaces/coins';
+import { CryptoCurrency } from '@interfaces/coins';
 import Image from 'next/image';
 
 interface SearchDropdownItemProps {

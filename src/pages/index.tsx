@@ -1,11 +1,11 @@
-import { getCoins } from '@/fetchers/coins';
-import { Table } from '@/components/common/Table';
-import { TableOptions } from '@/components/common/TableOptions';
-import { Coin } from '@/interfaces/coins';
+import { getCoins } from '@fetchers/coins';
+import { Table } from '@components/common/Table';
+import { TableOptions } from '@components/common/TableOptions';
+import { Coin } from '@interfaces/coins';
 import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
-import { urls } from '@/fetchers/urls';
-import { Column } from '@/interfaces/table';
+import { urls } from '@fetchers/urls';
+import { columns } from '@mocks/coins';
 
 export const getServerSideProps = async () => {
   const coins = await getCoins();
@@ -63,54 +63,6 @@ export default function Home({
   }
 
   console.log(data);
-
-  let columns: Column[] = [
-    {
-      id: 'column01',
-      label: '',
-      type: '',
-    },
-    {
-      id: 'column02',
-      label: '#',
-      type: 'string',
-    },
-    {
-      id: 'column03',
-      label: 'Coin',
-      type: 'string',
-    },
-    {
-      id: 'column04',
-      label: 'Price',
-      type: 'number',
-    },
-    {
-      id: 'column05',
-      label: '1h',
-      type: 'number',
-    },
-    {
-      id: 'column06',
-      label: '24h',
-      type: 'number',
-    },
-    {
-      id: 'column07',
-      label: '7d',
-      type: 'number',
-    },
-    {
-      id: 'column08',
-      label: '24h Volume',
-      type: 'number',
-    },
-    {
-      id: 'column09',
-      label: 'Mkt Cap',
-      type: 'number',
-    },
-  ];
 
   return (
     <div className="w-3/4 m-auto">

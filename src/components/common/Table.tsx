@@ -1,5 +1,5 @@
-import { Column } from '@/interfaces/table';
-import { ItemTable } from './ItemTable';
+import { Column } from '@interfaces/table';
+import { ItemTable } from '@components/common/ItemTable';
 
 interface TableProps<T> {
   columns: Column[];
@@ -17,14 +17,8 @@ export const Table = <T,>({ columns, data }: TableProps<T>) => {
               .map((column: Column) => (
                 <th
                   key={column.id}
-                  className={
-                    'p-2 ' +
-                    (typeof column === 'string'
-                      ? 'text-left'
-                      : typeof column === 'number'
-                      ? 'text-right'
-                      : '')
-                  }
+                  className={`p-2 
+                    ${column.align === 'left' ? 'text-left' : 'text-right'}`}
                 >
                   <>
                     {console.log(typeof column)}

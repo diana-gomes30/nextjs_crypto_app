@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
-import { NumPerPageOption } from '../index/NumPerPageOption';
-import { SearchArea } from '../index/SearchArea';
-import { CryptoCurrency } from '@/interfaces/coins';
+import { NumPerPageOption } from '@components/index/NumPerPageOption';
+import { SearchArea } from '@components/index/SearchArea';
+import { CryptoCurrency } from '@interfaces/coins';
 
 interface TableOptionsProps {
   onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;

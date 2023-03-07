@@ -1,7 +1,7 @@
-import Layout from '@/components/Layout';
+import Layout from '@components/Layout';
 import { AppProps } from 'next/app';
 import { SWRConfig } from 'swr/_internal';
-import '../styles/globals.css';
+import '@styles/globals.css';
 
 function App({ Component, pageProps }: AppProps) {
   return (
