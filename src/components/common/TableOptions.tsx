@@ -20,7 +20,7 @@ export const TableOptions = ({
   options,
   onChangeSelect,
 }: TableOptionsProps) => (
-  <div className="flex flex-row content-between m-auto">
+  <div className="flex flex-row justify-between m-auto">
     <div className="flex w-3/4 items-start">
       <SearchArea
         onChangeInput={onChangeInput}

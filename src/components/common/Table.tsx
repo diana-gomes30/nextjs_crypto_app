@@ -1,16 +1,15 @@
 import { Column } from '@/interfaces/table';
-import { Coin } from '../../interfaces/coins';
 import { ItemTable } from './ItemTable';
 
-interface TableProps {
+interface TableProps<T> {
   columns: Column[];
-  data: Coin[];
+  data: T[];
 }
 
-export const Table = ({ columns, data }: TableProps) => {
+export const Table = <T,>({ columns, data }: TableProps<T>) => {
   return (
-    <div className="flex justify-center items-center my-5 mx-0">
-      <table className="text-light text-lg border-collapse">
+    <div className="my-5 mx-0">
+      <table className="table-auto w-full text-light text-lg border-collapse">
         <tbody>
           <tr className="border-b border-t border-solid border-light bg-first-dark-blue">
             {columns
@@ -20,22 +19,29 @@ export const Table = ({ columns, data }: TableProps) => {
                   key={column.id}
                   className={
                     'p-2 ' +
-                    (column.type === 'string'
+                    (typeof column === 'string'
                       ? 'text-left'
-                      : column.type === 'number'
+                      : typeof column === 'number'
                       ? 'text-right'
                       : '')
                   }
                 >
-                  {column.label}
+                  <>
+                    {console.log(typeof column)}
+                    {column.label}
+                  </>
                 </th>
               ))}
           </tr>
 
           {data
-            ?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))
-            .map((coin: Coin) => (
-              <ItemTable key={coin.id} coin={coin} isSelected={false} />
+            /*?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))*/
+            .map((e: T) => (
+              <ItemTable
+                key={Object.values(e as object)[0]}
+                data={e}
+                isSelected={false}
+              />
             ))}
         </tbody>
       </table>

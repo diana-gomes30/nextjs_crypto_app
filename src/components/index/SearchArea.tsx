@@ -19,6 +19,10 @@ export const SearchArea = ({
   isSelected,
   cryptoCurrencies,
 }: SearchAreaProps) => {
+  const isSelectedStyle = isSelected
+    ? 'border-third-dark-blue opacity-50 border-solid border-2 justify-between'
+    : '';
+
   return (
     <div className="absolute w-1/4 min-w-min max-w-max">
       <div className="bg-light shadow-md rounded-lg ">
@@ -29,10 +33,7 @@ export const SearchArea = ({
             </div>
           )}
           <div
-            className={`flex items-center max-w-full bg-light text-first-dark-blue rounded-lg ${
-              isSelected &&
-              'border-third-dark-blue opacity-50 border-solid border-2'
-            }`}
+            className={`flex items-center max-w-full bg-light text-first-dark-blue rounded-lg ${isSelectedStyle}`}
           >
             <div onClick={() => onSelect(true)} className="">
               <i className="p-2 bg-light text-first-dark-blue text-sm rounded-lg">
