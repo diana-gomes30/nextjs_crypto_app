@@ -23,7 +23,7 @@
       "@components/*": ["./src/components/*"],
       "@fetchers/*": ["./src/fetchers/*"],
       "@interfaces/*": ["./src/interfaces/*"],
-      "@mocks/*": ["./src/mocks/*"],
+      "@mocks/*": ["src/__mocks__/*"],
       "@pages/*": ["./src/pages/*"],
       "@stories/*": ["./src/stories/*"],
       "@styles/*": ["./src/styles/*"],

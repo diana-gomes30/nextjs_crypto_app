@@ -5,7 +5,7 @@ import { Coin } from '@interfaces/coins';
 import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
 import { urls } from '@fetchers/urls';
-import { columns } from '@mocks/coins';
+import { columns } from '@/__mocks__/coins';
 
 export const getServerSideProps = async () => {
   const coins = await getCoins();
