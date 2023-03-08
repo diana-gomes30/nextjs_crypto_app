@@ -11,6 +11,20 @@ export interface Coin {
   market_cap: number;
 }
 
+export interface SearchCoin {
+  id: string;
+  name: string;
+  api_symbol: string;
+  symbol: string;
+  market_cap_rank: number;
+  thumb: string;
+  large: string;
+}
+
+export interface SearchResult {
+  coins: SearchCoin[];
+}
+
 export interface CryptoCurrency {
   id: string;
   market_cap_rank: number;

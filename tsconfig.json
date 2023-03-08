@@ -27,6 +27,7 @@
       "@pages/*": ["./src/pages/*"],
       "@stories/*": ["./src/stories/*"],
       "@styles/*": ["./src/styles/*"],
+      "@consts/*": ["./src/consts/*"],
       "@/*": ["./src/*"]
     }
   },

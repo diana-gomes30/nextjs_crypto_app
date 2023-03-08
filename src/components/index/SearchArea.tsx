@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { CryptoCurrency } from '@/interfaces/coins';
+import { ChangeEvent, useCallback, useState } from 'react';
+import { SearchCoin } from '@/interfaces/coins';
 import { SearchDropdownItem } from '@/components/common/SearchDropdownItem';
 import _ from 'lodash';
 
 interface SearchAreaProps {
   onChangeInput: (searchValue: string) => void;
-  results: CryptoCurrency[];
+  results?: SearchCoin[];
 }
 
 export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
@@ -73,8 +73,10 @@ export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
         {isSelected && (
           <div className="py-3 px-2 text-sm">
             {results
-              ?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))
-              .map((cryptoCurrency: CryptoCurrency) => (
+              ?.sort((a: SearchCoin, b: SearchCoin) =>
+                a.market_cap_rank > b.market_cap_rank ? 1 : -1
+              )
+              .map((cryptoCurrency: SearchCoin) => (
                 <SearchDropdownItem
                   key={cryptoCurrency.id}
                   cryptoCurrency={cryptoCurrency}

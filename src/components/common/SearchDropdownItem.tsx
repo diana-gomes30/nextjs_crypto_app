@@ -1,8 +1,8 @@
-import { CryptoCurrency } from '@interfaces/coins';
+import { SearchCoin } from '@interfaces/coins';
 import Image from 'next/image';
 
 interface SearchDropdownItemProps {
-  cryptoCurrency: CryptoCurrency;
+  cryptoCurrency: SearchCoin;
 }
 
 export const SearchDropdownItem = ({
@@ -13,7 +13,7 @@ export const SearchDropdownItem = ({
       <Image
         className="w-5 h-5 mr-3"
         alt="Coin Icon"
-        src={cryptoCurrency.image}
+        src={cryptoCurrency.thumb}
         width={50}
         height={50}
       />

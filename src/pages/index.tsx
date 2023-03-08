@@ -1,11 +1,11 @@
-import { getCoins } from '@fetchers/coins';
+import { getCoins, getSearch } from '@fetchers/coins';
 import { Table } from '@components/common/Table';
 import { TableOptions } from '@components/common/TableOptions';
-import { Coin } from '@interfaces/coins';
-import { useState } from 'react';
+import { Coin, SearchResult } from '@interfaces/coins';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { urls } from '@fetchers/urls';
-import { columns } from '@/__mocks__/coins';
+import { columns } from '@consts/table';
 
 export const getServerSideProps = async () => {
   const coins = await getCoins();
@@ -24,7 +24,7 @@ export default function Home({
   fallback: Record<string, Coin[]>;
 }) {
   const [options, setOptions] = useState({ numPerPage: 15, searchByValue: '' });
-
+  const [results, setResults] = useState<SearchResult>();
   const { data, error, isLoading, mutate } = useSWR(
     urls.markets(options.numPerPage),
     {
@@ -32,12 +32,8 @@ export default function Home({
     }
   );
 
-  const handleChange = (searchValue: string) => {
-    console.log(searchValue);
-    setOptions((prevValue) => ({
-      ...prevValue,
-      searchByValue: searchValue,
-    }));
+  const handleChange = async (searchValue: string) => {
+    setResults(await getSearch(searchValue));
   };
 
   const changeNumPerPage = (value: number) => {
@@ -63,7 +59,7 @@ export default function Home({
       <div className="pt-7 pb-10">
         <TableOptions
           onChangeInput={handleChange}
-          results={[]}
+          results={results?.coins}
           options={options}
           onChangeSelect={changeNumPerPage}
         />

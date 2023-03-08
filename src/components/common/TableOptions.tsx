@@ -1,11 +1,11 @@
 import { ChangeEvent } from 'react';
 import { NumPerPageOption } from '@components/index/NumPerPageOption';
 import { SearchArea } from '@components/index/SearchArea';
-import { CryptoCurrency } from '@interfaces/coins';
+import { SearchCoin } from '@interfaces/coins';
 
 interface TableOptionsProps {
   onChangeInput: (searchValue: string) => void;
-  results: CryptoCurrency[];
+  results?: SearchCoin[];
   options: { numPerPage: number };
   onChangeSelect: (value: number) => void;
 }
