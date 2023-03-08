@@ -31,11 +31,7 @@ export const Table = <T,>({ columns, data }: TableProps<T>) => {
           {data
             /*?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))*/
             .map((e: T) => (
-              <ItemTable
-                key={Object.values(e as object)[0]}
-                data={e}
-                isSelected={false}
-              />
+              <ItemTable key={Object.values(e as object)[0]} data={e} />
             ))}
         </tbody>
       </table>

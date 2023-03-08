@@ -48,6 +48,20 @@ export const columns: Column[] = [
   },
 ];
 
+export const coin: Coin = {
+  id: 'bitcoin',
+  name: 'Bitcoin',
+  image:
+    'https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579',
+  current_price: 22507,
+  market_cap: 434286492645,
+  market_cap_rank: 1,
+  total_volume: 20390513674,
+  price_change_percentage_1h_in_currency: -0.06501890809141164,
+  price_change_percentage_24h_in_currency: 0.1613977449185747,
+  price_change_percentage_7d_in_currency: -4.391734799711345,
+};
+
 export const coins: Coin[] = [
   {
     id: 'bitcoin',
@@ -113,5 +127,53 @@ export const coins: Coin[] = [
     price_change_percentage_1h_in_currency: 0.010642846118461786,
     price_change_percentage_24h_in_currency: -0.08682129470877437,
     price_change_percentage_7d_in_currency: -0.0517275831684956,
+  },
+];
+
+export const cryptoCurrencies = [
+  {
+    id: 'bitcoin',
+    name: 'Bitcoin',
+    symbol: 'BTC',
+    market_cap_rank: 1,
+    image: 'https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png',
+  },
+  {
+    id: 'wrapped-bitcoin',
+    name: 'Wrapped Bitcoin',
+    symbol: 'WBTC',
+    market_cap_rank: 22,
+    image:
+      'https://assets.coingecko.com/coins/images/7598/thumb/wrapped_bitcoin_wbtc.png',
+  },
+  {
+    id: 'bitcoin-cash',
+    name: 'Bitcoin Cash',
+    symbol: 'BCH',
+    market_cap_rank: 29,
+    image:
+      'https://assets.coingecko.com/coins/images/780/thumb/bitcoin-cash-circle.png',
+  },
+  {
+    id: 'bitcoin-cash-sv',
+    name: 'Bitcoin SV',
+    symbol: 'BSV',
+    market_cap_rank: 66,
+    image: 'https://assets.coingecko.com/coins/images/6799/thumb/BSV.png',
+  },
+  {
+    id: 'bitcoin-gold',
+    name: 'Bitcoin Gold',
+    symbol: 'BTG',
+    market_cap_rank: 143,
+    image:
+      'https://assets.coingecko.com/coins/images/1043/thumb/bitcoin-gold-logo.png',
+  },
+  {
+    id: 'bitcoin-avalanche-bridged-btc-b',
+    name: 'Bitcoin Avalanche Bridged (BTC.b)',
+    symbol: 'BTC.B',
+    market_cap_rank: 230,
+    image: 'https://assets.coingecko.com/coins/images/26115/thumb/btcb.png',
   },
 ];

@@ -35,7 +35,7 @@ export const SearchArea = ({
           <div
             className={`flex items-center max-w-full bg-light text-first-dark-blue rounded-lg ${isSelectedStyle}`}
           >
-            <div onClick={() => onSelect(true)} className="">
+            <div onClick={() => onSelect(true)}>
               <i className="p-2 bg-light text-first-dark-blue text-sm rounded-lg">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </i>

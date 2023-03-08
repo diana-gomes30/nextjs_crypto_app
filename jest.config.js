@@ -18,6 +18,7 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^@components/(.*)$': '<rootDir>/components/$1',
+    '^@mocks/(.*)$': '<rootDir>/__mocks__/$1',
   },
 };
 

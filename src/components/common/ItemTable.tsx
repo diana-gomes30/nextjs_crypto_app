@@ -7,7 +7,6 @@ import { ReactNode } from 'react';
 
 interface ItemTableProps<T> {
   data: T;
-  isSelected: boolean;
 }
 
 interface ComponentProps {
@@ -26,7 +25,7 @@ const Percentage = ({ children }: ComponentProps) => (
   </td>
 );
 
-export const ItemTable = <T,>({ data, isSelected }: ItemTableProps<T>) => {
+export const ItemTable = <T,>({ data }: ItemTableProps<T>) => {
   const coin = data as Coin;
 
   return (
@@ -34,18 +33,11 @@ export const ItemTable = <T,>({ data, isSelected }: ItemTableProps<T>) => {
       key={coin.id}
       className="border-b-2 border-solid border-light text-light align-middle bg-first-dark-blue hover:bg-third-dark-blue"
     >
-      <td className="text-center p-2">
-        <FontAwesomeIcon
-          icon={faStar}
-          className={
-            'cursor-pointer ' + (isSelected ? 'text-yellow-500' : 'text-light')
-          }
-        />
-      </td>
       <Text>{coin.market_cap_rank}</Text>
       <td className="flex items-center p-2">
         <Image
           className="w-5 h-5 mr-3"
+          unoptimized
           alt="Coin Icon"
           src={coin.image}
           width={100}
