@@ -2,7 +2,7 @@ import { getCoins } from '@fetchers/coins';
 import { Table } from '@components/common/Table';
 import { TableOptions } from '@components/common/TableOptions';
 import { Coin } from '@interfaces/coins';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { urls } from '@fetchers/urls';
 import { columns } from '@/__mocks__/coins';
@@ -24,7 +24,6 @@ export default function Home({
   fallback: Record<string, Coin[]>;
 }) {
   const [options, setOptions] = useState({ numPerPage: 15, searchByValue: '' });
-  const [isSearchSelected, setIsSearchSelected] = useState(false);
 
   const { data, error, isLoading, mutate } = useSWR(
     urls.markets(options.numPerPage),
@@ -33,17 +32,12 @@ export default function Home({
     }
   );
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (searchValue: string) => {
+    console.log(searchValue);
     setOptions((prevValue) => ({
       ...prevValue,
-      searchByValue: event.target.value,
+      searchByValue: searchValue,
     }));
-  };
-
-  const onSearchClick = (value: boolean) => {
-    console.log('Value: ' + value);
-    setIsSearchSelected(value);
-    console.log('Final Value: ' + isSearchSelected);
   };
 
   const changeNumPerPage = (value: number) => {
@@ -69,9 +63,7 @@ export default function Home({
       <div className="pt-7 pb-10">
         <TableOptions
           onChangeInput={handleChange}
-          onSearchClick={onSearchClick}
-          isSearchSelected={isSearchSelected}
-          cryptoCurrencies={[]}
+          results={[]}
           options={options}
           onChangeSelect={changeNumPerPage}
         />

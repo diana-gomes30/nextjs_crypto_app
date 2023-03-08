@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { SearchArea } from '@components/index/SearchArea';
@@ -11,13 +11,29 @@ export default {
 } as ComponentMeta<typeof SearchArea>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SearchArea> = (args) => (
-  <SearchArea {...args} />
-);
+const Template: ComponentStory<typeof SearchArea> = (args) => {
+  const [value, setValue] = useState('');
+  const [results, setResults] = useState<any[]>([]);
+
+  useEffect(
+    () =>
+      setResults(
+        cryptoCurrencies.filter(
+          ({ name, symbol }) =>
+            name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
+            symbol.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        )
+      ),
+    [value]
+  );
+
+  return (
+    <SearchArea onChangeInput={(value) => setValue(value)} results={results} />
+  );
+};
 
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-  value: 'bitcoin',
-  cryptoCurrencies: cryptoCurrencies,
+  results: cryptoCurrencies,
 };

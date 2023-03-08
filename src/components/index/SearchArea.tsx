@@ -1,24 +1,33 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { CryptoCurrency } from '@/interfaces/coins';
 import { SearchDropdownItem } from '@/components/common/SearchDropdownItem';
+import _ from 'lodash';
 
 interface SearchAreaProps {
-  onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
-  onSelect: (value: boolean) => void;
-  value: string;
-  isSelected: boolean;
-  cryptoCurrencies: CryptoCurrency[];
+  onChangeInput: (searchValue: string) => void;
+  results: CryptoCurrency[];
 }
 
-export const SearchArea = ({
-  onChangeInput,
-  onSelect,
-  value,
-  isSelected,
-  cryptoCurrencies,
-}: SearchAreaProps) => {
+export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
+  const [isSelected, setIsSelected] = useState(false);
+  const [search, setSearch] = useState('');
+
+  const debounce = useCallback(
+    _.debounce((value: string) => {
+      console.log(`Debounce 1000ms! -> ${value}`);
+      onChangeInput(value);
+    }, 1000),
+    []
+  );
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(`onChange ${event.target.value}`);
+    setSearch(event.target.value);
+    debounce(event.target.value);
+  };
+
   const isSelectedStyle = isSelected
     ? 'border-third-dark-blue opacity-50 border-solid border-2 justify-between'
     : '';
@@ -35,7 +44,7 @@ export const SearchArea = ({
           <div
             className={`flex items-center max-w-full bg-light text-first-dark-blue rounded-lg ${isSelectedStyle}`}
           >
-            <div onClick={() => onSelect(true)}>
+            <div onClick={() => setIsSelected(true)}>
               <i className="p-2 bg-light text-first-dark-blue text-sm rounded-lg">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </i>
@@ -44,14 +53,14 @@ export const SearchArea = ({
                 id="search"
                 type="text"
                 autoComplete="off"
-                onChange={(event) => onChangeInput(event)}
-                value={isSelected ? value : ''}
+                onChange={(event) => onChange(event)}
+                value={isSelected ? search : ''}
                 placeholder="Search coins"
               />
             </div>
             {isSelected && (
               <div
-                onClick={() => onSelect(false)}
+                onClick={() => setIsSelected(false)}
                 className="justify-end items-center"
               >
                 <i className="p-2 bg-light text-first-dark-blue text-sm rounded-lg">
@@ -63,7 +72,7 @@ export const SearchArea = ({
         </div>
         {isSelected && (
           <div className="py-3 px-2 text-sm">
-            {cryptoCurrencies
+            {results
               ?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))
               .map((cryptoCurrency: CryptoCurrency) => (
                 <SearchDropdownItem
