@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Coin } from '@interfaces/coins';
 import Image from 'next/image';
 import { formatToMoney, getColor, roundNumber } from '@/utils';
