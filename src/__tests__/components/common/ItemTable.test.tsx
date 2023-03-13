@@ -1,10 +1,12 @@
 import { ItemTable } from '@components/common/ItemTable';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { coin } from '@mocks/coins';
+import { coins } from '@mocks/coins';
 
 describe('ItemTable', () => {
   test('Test data', () => {
+    const coin = coins[0];
+
     render(
       <table>
         <tbody>

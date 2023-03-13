@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { ItemTable } from '@components/common/ItemTable';
-import { coin } from '@mocks/coins';
+import { coins } from '@mocks/coins';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -18,5 +18,5 @@ const Template: ComponentStory<typeof ItemTable> = (args) => (
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-  data: coin,
+  data: coins[0],
 };

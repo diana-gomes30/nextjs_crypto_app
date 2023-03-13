@@ -22,6 +22,7 @@ describe('SearchArea', () => {
     const { input } = setup();
 
     expect(input).toHaveProperty('placeholder', 'Search');
+    expect(input).not.toHaveProperty('placeholder', 'Search coin name');
 
     fireEvent.click(input, { target: { placeholder: 'Search coin name' } });
 

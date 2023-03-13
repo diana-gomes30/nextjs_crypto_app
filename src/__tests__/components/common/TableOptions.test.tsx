@@ -21,10 +21,12 @@ describe('TableOptions', () => {
 
     const input = screen.getByTestId('search-input');
     expect(input).toHaveProperty('placeholder', 'Search');
+    expect(input).not.toHaveProperty('placeholder', 'Search coin name');
     expect(screen.queryByText('Cryptocurrencies')).not.toBeInTheDocument();
 
     fireEvent.click(input);
     expect(input).toHaveProperty('placeholder', 'Search coin name');
+    expect(input).not.toHaveProperty('placeholder', 'Search');
     expect(screen.getByText('Cryptocurrencies')).toBeInTheDocument();
   });
 
@@ -54,4 +56,6 @@ describe('TableOptions', () => {
     expect(screen.getByText('100')).toBeInTheDocument();
     expect(screen.getByText('150')).toBeInTheDocument();
   });
+
+  test('verify if show options', () => {});
 });

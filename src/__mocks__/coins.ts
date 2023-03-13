@@ -1,19 +1,5 @@
 import { Coin, SearchCoin } from '@interfaces/coins';
 
-export const coin: Coin = {
-  id: 'bitcoin',
-  name: 'Bitcoin',
-  image:
-    'https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579',
-  current_price: 22507,
-  market_cap: 434286492645,
-  market_cap_rank: 1,
-  total_volume: 20390513674,
-  price_change_percentage_1h_in_currency: -0.06501890809141164,
-  price_change_percentage_24h_in_currency: 0.1613977449185747,
-  price_change_percentage_7d_in_currency: -4.391734799711345,
-};
-
 export const coins: Coin[] = [
   {
     id: 'bitcoin',
