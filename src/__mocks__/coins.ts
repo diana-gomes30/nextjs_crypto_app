@@ -1,4 +1,4 @@
-import { Coin } from '@interfaces/coins';
+import { Coin, SearchCoin } from '@interfaces/coins';
 import { Column } from '@interfaces/table';
 
 export const coin: Coin = {
@@ -83,50 +83,65 @@ export const coins: Coin[] = [
   },
 ];
 
-export const cryptoCurrencies = [
+export const cryptoCurrencies: SearchCoin[] = [
   {
     id: 'bitcoin',
     name: 'Bitcoin',
+    api_symbol: 'bitcoin',
     symbol: 'BTC',
     market_cap_rank: 1,
-    image: 'https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png',
+    thumb: 'https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png',
+    large: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png',
   },
   {
     id: 'wrapped-bitcoin',
     name: 'Wrapped Bitcoin',
+    api_symbol: 'wrapped-bitcoin',
     symbol: 'WBTC',
-    market_cap_rank: 22,
-    image:
+    market_cap_rank: 20,
+    thumb:
       'https://assets.coingecko.com/coins/images/7598/thumb/wrapped_bitcoin_wbtc.png',
+    large:
+      'https://assets.coingecko.com/coins/images/7598/large/wrapped_bitcoin_wbtc.png',
   },
   {
     id: 'bitcoin-cash',
     name: 'Bitcoin Cash',
+    api_symbol: 'bitcoin-cash',
     symbol: 'BCH',
     market_cap_rank: 29,
-    image:
+    thumb:
       'https://assets.coingecko.com/coins/images/780/thumb/bitcoin-cash-circle.png',
+    large:
+      'https://assets.coingecko.com/coins/images/780/large/bitcoin-cash-circle.png',
   },
   {
     id: 'bitcoin-cash-sv',
     name: 'Bitcoin SV',
+    api_symbol: 'bitcoin-cash-sv',
     symbol: 'BSV',
-    market_cap_rank: 66,
-    image: 'https://assets.coingecko.com/coins/images/6799/thumb/BSV.png',
+    market_cap_rank: 69,
+    thumb: 'https://assets.coingecko.com/coins/images/6799/thumb/BSV.png',
+    large: 'https://assets.coingecko.com/coins/images/6799/large/BSV.png',
   },
   {
     id: 'bitcoin-gold',
     name: 'Bitcoin Gold',
+    api_symbol: 'bitcoin-gold',
     symbol: 'BTG',
-    market_cap_rank: 143,
-    image:
+    market_cap_rank: 150,
+    thumb:
       'https://assets.coingecko.com/coins/images/1043/thumb/bitcoin-gold-logo.png',
+    large:
+      'https://assets.coingecko.com/coins/images/1043/large/bitcoin-gold-logo.png',
   },
   {
     id: 'bitcoin-avalanche-bridged-btc-b',
     name: 'Bitcoin Avalanche Bridged (BTC.b)',
+    api_symbol: 'bitcoin-avalanche-bridged-btc-b',
     symbol: 'BTC.B',
-    market_cap_rank: 230,
-    image: 'https://assets.coingecko.com/coins/images/26115/thumb/btcb.png',
+    market_cap_rank: 205,
+    thumb: 'https://assets.coingecko.com/coins/images/26115/thumb/btcb.png',
+    large: 'https://assets.coingecko.com/coins/images/26115/large/btcb.png',
   },
 ];

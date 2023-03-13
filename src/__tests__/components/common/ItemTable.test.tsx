@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { coin } from '@mocks/coins';
 
 describe('ItemTable', () => {
-  test('testing data', () => {
+  test('Test data', () => {
     render(
       <table>
         <tbody>

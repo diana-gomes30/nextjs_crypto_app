@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { NumPerPageOption } from '@components/index/NumPerPageOption';
 
 describe('NumPerPageOption', () => {
-  test('testing data', () => {
+  test('Test data', () => {
     const { rerender } = render(
       <NumPerPageOption onClick={() => {}} numPerPage={15} />
     );

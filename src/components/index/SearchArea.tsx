@@ -44,7 +44,10 @@ export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
           <div
             className={`flex items-center max-w-full bg-light text-first-dark-blue rounded-lg ${isSelectedStyle}`}
           >
-            <div onClick={() => setIsSelected(true)}>
+            <div
+              data-testid="search-button"
+              onClick={() => setIsSelected(true)}
+            >
               <i className="p-2 bg-light text-first-dark-blue text-sm rounded-lg">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </i>
@@ -55,7 +58,8 @@ export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
                 autoComplete="off"
                 onChange={(event) => onChange(event)}
                 value={isSelected ? search : ''}
-                placeholder="Search coins"
+                placeholder={`${isSelected ? 'Search coin name' : 'Search'}`}
+                data-testid="search-input"
               />
             </div>
             {isSelected && (
