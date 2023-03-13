@@ -9,7 +9,7 @@ describe('TableOptions', () => {
     numPerPage: 15,
   };
 
-  test('Test data from search area', () => {
+  it(`display's data from search area`, () => {
     render(
       <TableOptions
         onChangeInput={(searchValue: string) => searchValue}
@@ -30,7 +30,7 @@ describe('TableOptions', () => {
     expect(screen.getByText('Cryptocurrencies')).toBeInTheDocument();
   });
 
-  test('Test data from num per page option', async () => {
+  it(`display's num per page options`, async () => {
     render(
       <TableOptions
         onChangeInput={(searchValue: string) => searchValue}
@@ -49,13 +49,10 @@ describe('TableOptions', () => {
 
     await act(async () => fireEvent.click(input));
 
-    //screen.debug();
     expect(screen.getAllByText('15')).toHaveLength(2);
     expect(screen.getByText('30')).toBeInTheDocument();
     expect(screen.getByText('50')).toBeInTheDocument();
     expect(screen.getByText('100')).toBeInTheDocument();
     expect(screen.getByText('150')).toBeInTheDocument();
   });
-
-  test('verify if show options', () => {});
 });

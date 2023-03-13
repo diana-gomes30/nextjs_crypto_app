@@ -4,12 +4,11 @@ import '@testing-library/jest-dom';
 import { NumPerPageOption } from '@components/index/NumPerPageOption';
 
 describe('NumPerPageOption', () => {
-  test('Test data', () => {
+  it(`display's data`, () => {
     const { rerender } = render(
       <NumPerPageOption onClick={() => {}} numPerPage={15} />
     );
 
-    //screen.debug();
     const menuMainButton = screen.getByRole('button');
     expect(menuMainButton).toHaveTextContent('15');
     expect(menuMainButton).toHaveAttribute('aria-expanded', 'false');

@@ -48,11 +48,8 @@ export default function Home({
   }
 
   if (error) {
-    console.log(error);
     return <div>{JSON.stringify(error)}</div>;
   }
-
-  console.log(data);
 
   return (
     <div className="w-3/4 m-auto">

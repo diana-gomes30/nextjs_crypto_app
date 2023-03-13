@@ -18,7 +18,7 @@ const setup = () => {
 };
 
 describe('SearchArea', () => {
-  test('Test data', () => {
+  it(`display's data`, () => {
     const { input } = setup();
 
     expect(input).toHaveProperty('placeholder', 'Search');
@@ -36,15 +36,14 @@ describe('SearchArea', () => {
     ).toBeInTheDocument();
   });
 
-  test('Test on change input value', () => {
+  it('changes input value', () => {
     const { input } = setup();
     fireEvent.click(input);
     fireEvent.change(input, { target: { value: 'ethereum' } });
-    //screen.debug();
     expect(input.getAttribute('value')).toBe('ethereum');
   });
 
-  test('Test on change props component', () => {
+  it('changes props component', () => {
     const { input, rerender } = setup();
     let value = 'bsv';
     const coins = cryptoCurrencies.filter(
@@ -59,7 +58,7 @@ describe('SearchArea', () => {
         results={coins}
       />
     );
-    //screen.debug();
+
     expect(screen.queryByText('Bitcoin SV (BSV)')).not.toBeInTheDocument();
 
     fireEvent.click(input);

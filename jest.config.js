@@ -20,6 +20,7 @@ const customJestConfig = {
     '^@components/(.*)$': '<rootDir>/components/$1',
     '^@mocks/(.*)$': '<rootDir>/__mocks__/$1',
     '^@consts/(.*)$': '<rootDir>/consts/$1',
+    '^@fetchers/(.*)$': '<rootDir>/fetchers/$1',
   },
 };
 

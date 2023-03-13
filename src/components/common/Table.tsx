@@ -20,19 +20,14 @@ export const Table = <T,>({ columns, data }: TableProps<T>) => {
                   className={`p-2 
                     ${column.align === 'left' ? 'text-left' : 'text-right'}`}
                 >
-                  <>
-                    {console.log(typeof column)}
-                    {column.label}
-                  </>
+                  {column.label}
                 </th>
               ))}
           </tr>
 
-          {data
-            /*?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))*/
-            .map((e: T) => (
-              <ItemTable key={Object.values(e as object)[0]} data={e} />
-            ))}
+          {data.map((e: T) => (
+            <ItemTable key={Object.values(e as object)[0]} data={e} />
+          ))}
         </tbody>
       </table>
     </div>

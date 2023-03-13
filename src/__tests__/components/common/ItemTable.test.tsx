@@ -15,7 +15,6 @@ describe('ItemTable', () => {
       </table>
     );
 
-    //screen.debug();
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByText('Bitcoin')).toBeInTheDocument();
     expect(screen.getByAltText('Coin Icon')).toHaveAttribute('src', coin.image);

@@ -2,7 +2,6 @@ import { urls } from '@fetchers/urls';
 import { SearchResult } from '@interfaces/coins';
 
 const getCoins = async (numPerPage: number = 15, page: number = 1) => {
-  console.log({ numPerPage, page });
   const url = urls.markets(numPerPage, page);
 
   const response = await fetch(url);

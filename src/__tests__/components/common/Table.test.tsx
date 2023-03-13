@@ -6,10 +6,8 @@ import { columns } from '@consts/table';
 import { coins } from '@mocks/coins';
 
 describe('Table', () => {
-  test('Test data from table', () => {
+  it('show table header', () => {
     render(<Table columns={columns} data={coins} />);
-
-    expect(screen.getAllByRole('row')).toHaveLength(6);
 
     expect(screen.getByText('#')).toBeInTheDocument();
     expect(screen.getByText('Coin')).toBeInTheDocument();
@@ -19,6 +17,11 @@ describe('Table', () => {
     expect(screen.getByText('7d')).toBeInTheDocument();
     expect(screen.getByText('24h Volume')).toBeInTheDocument();
     expect(screen.getByText('Mkt Cap')).toBeInTheDocument();
-    screen.debug();
+  });
+
+  it('show all rows', () => {
+    render(<Table columns={columns} data={coins} />);
+
+    expect(screen.getAllByRole('row')).toHaveLength(6);
   });
 });

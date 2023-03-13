@@ -16,14 +16,12 @@ export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
 
   const debounce = useCallback(
     _.debounce((value: string) => {
-      console.log(`Debounce 1000ms! -> ${value}`);
       onChangeInput(value);
     }, 1000),
     []
   );
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(`onChange ${event.target.value}`);
     setSearch(event.target.value);
     debounce(event.target.value);
   };
