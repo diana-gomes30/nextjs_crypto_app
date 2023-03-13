@@ -13,7 +13,10 @@ export const NumPerPageOption = ({
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-11 justify-center rounded-md bg-light px-4 py-2 text-sm font-medium text-first-dark-blue hover:bg-third-dark-blue hover:text-light focus:outline-none focus-visible:ring-2 focus-visible:ring-light focus-visible:ring-opacity-75">
+        <Menu.Button
+          data-testid="num-per-page-button"
+          className="inline-flex w-11 justify-center rounded-md bg-light px-4 py-2 text-sm font-medium text-first-dark-blue hover:bg-third-dark-blue hover:text-light focus:outline-none focus-visible:ring-2 focus-visible:ring-light focus-visible:ring-opacity-75"
+        >
           {numPerPage}
         </Menu.Button>
       </div>

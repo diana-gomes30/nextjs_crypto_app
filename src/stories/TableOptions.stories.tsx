@@ -20,8 +20,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   options: {
     numPerPage: 15,
-    searchByValue: '',
   },
-  isSearchSelected: false,
-  cryptoCurrencies: cryptoCurrencies,
 };
