@@ -1,5 +1,4 @@
 import { Coin, SearchCoin } from '@interfaces/coins';
-import { Column } from '@interfaces/table';
 
 export const coin: Coin = {
   id: 'bitcoin',

@@ -13,6 +13,7 @@ export const SearchDropdownItem = ({
       <Image
         className="w-5 h-5 mr-3"
         alt="Coin Icon"
+        unoptimized
         src={cryptoCurrency.thumb}
         width={50}
         height={50}
