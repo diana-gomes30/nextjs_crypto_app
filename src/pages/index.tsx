@@ -2,7 +2,7 @@ import { getCoins, getSearch } from '@fetchers/coins';
 import { Table } from '@components/common/Table';
 import { TableOptions } from '@components/common/TableOptions';
 import { Coin, SearchResult } from '@interfaces/coins';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { urls } from '@fetchers/urls';
 import { columns } from '@consts/table';
