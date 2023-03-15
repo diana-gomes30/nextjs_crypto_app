@@ -25,12 +25,9 @@ export default function Home({
 }) {
   const [options, setOptions] = useState({ numPerPage: 15, searchByValue: '' });
   const [results, setResults] = useState<SearchResult>();
-  const { data, error, isLoading, mutate } = useSWR(
-    urls.markets(options.numPerPage),
-    {
-      fallback,
-    }
-  );
+  const { data, error, isLoading } = useSWR(urls.markets(options.numPerPage), {
+    fallback,
+  });
 
   const handleChange = async (searchValue: string) => {
     setResults(await getSearch(searchValue));
@@ -44,11 +41,31 @@ export default function Home({
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen w-full justify-center items-center">
+        <h1 className="text-xl font-bold text-light">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return (
+      <div className="flex h-screen w-full justify-center items-center">
+        <h1 className="text-xl font-bold text-light">
+          Is not possible to load
+        </h1>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>{JSON.stringify(error)}</div>;
+    return (
+      <div className="flex h-screen w-full justify-center items-center">
+        <h1 className="text-xl font-bold text-light">
+          {JSON.stringify(error)}
+        </h1>
+      </div>
+    );
   }
 
   return (

@@ -33,7 +33,7 @@ export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
   return (
     <div className="absolute w-1/4 min-w-min max-w-max">
       <div className="bg-light shadow-md rounded-lg ">
-        <div className="px-2">
+        <div className="p-2">
           {isSelected && (
             <div className="text-first-dark-blue text-lg font-semibold py-2 px-2">
               Cryptocurrencies
@@ -72,8 +72,8 @@ export const SearchArea = ({ onChangeInput, results }: SearchAreaProps) => {
             )}
           </div>
         </div>
-        {isSelected && (
-          <div className="py-3 px-2 text-sm">
+        {isSelected && results && (
+          <div className="overflow-y-auto max-h-80 py-3 px-2 text-sm">
             {results
               ?.sort((a: SearchCoin, b: SearchCoin) =>
                 a.market_cap_rank > b.market_cap_rank ? 1 : -1

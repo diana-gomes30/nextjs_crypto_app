@@ -6,4 +6,6 @@ export const urls = {
   search: (valueToSearch: string) => `${baseUrl}search?query=${valueToSearch}`,
   coins: (e: string) =>
     `${baseUrl}coins/${e}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`,
+  coinData: (coinId: string) =>
+    `${baseUrl}coins/${coinId}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`,
 };

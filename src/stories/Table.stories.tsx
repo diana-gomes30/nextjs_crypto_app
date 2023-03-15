@@ -2,7 +2,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Table } from '@components/common/Table';
-import { coins, columns } from '@/__mocks__/coins';
+import { coins } from '@/__mocks__/coins';
+import { columns } from '@consts/table';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

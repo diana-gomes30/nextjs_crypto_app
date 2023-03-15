@@ -41,7 +41,7 @@ export default function Top10({
   return (
     <div className="w-3/4 m-auto">
       <div className="pt-7 pb-10">
-        <h1 className="text-center text-4xl text-light">Top 10</h1>
+        <h1 className="text-center text-xl font-bold text-light">Top 10</h1>
       </div>
       <Table columns={columns} data={data} />
     </div>

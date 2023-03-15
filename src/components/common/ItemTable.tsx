@@ -2,6 +2,8 @@ import { Coin } from '@interfaces/coins';
 import Image from 'next/image';
 import { formatToMoney, getColor, roundNumber } from '@/utils';
 import { ReactNode } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface ItemTableProps<T> {
   data: T;
@@ -24,12 +26,14 @@ const Percentage = ({ children }: ComponentProps) => (
 );
 
 export const ItemTable = <T,>({ data }: ItemTableProps<T>) => {
+  const router = useRouter();
   const coin = data as Coin;
 
   return (
     <tr
       key={coin.id}
-      className="border-b-2 border-solid border-light text-light align-middle bg-first-dark-blue hover:bg-third-dark-blue"
+      className="cursor-pointer border-b-2 border-solid border-light text-light align-middle bg-first-dark-blue hover:bg-third-dark-blue"
+      onClick={() => router.push(`/coin/${coin.id}`)}
     >
       <Text>{coin.market_cap_rank}</Text>
       <td className="flex items-center p-2">
