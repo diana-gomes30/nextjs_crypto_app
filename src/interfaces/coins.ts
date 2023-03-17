@@ -1544,3 +1544,12 @@ export interface CoinData {
   };
   last_updated: string;
 }
+
+export interface Statistic {
+  id: string;
+  label: string;
+  value: string | number;
+  value2?: string | number;
+  colorValue2?: string | number;
+  date?: Date;
+}

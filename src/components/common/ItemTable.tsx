@@ -2,7 +2,6 @@ import { Coin } from '@interfaces/coins';
 import Image from 'next/image';
 import { formatToMoney, getColor, roundNumber } from '@/utils';
 import { ReactNode } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 interface ItemTableProps<T> {

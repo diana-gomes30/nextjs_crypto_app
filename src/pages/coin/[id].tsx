@@ -6,6 +6,9 @@ import useSWR from 'swr';
 import { getCoinData } from '@fetchers/coins';
 import { CoinData } from '@interfaces/coins';
 import { urls } from '@fetchers/urls';
+import { PriceStatistics } from '@components/coin/PriceStatistics';
+import { getCoinPriceStatistics } from '@/utils';
+import { CoinInformation } from '@components/coin/CoinInformation';
 
 interface Params extends ParsedUrlQuery {
   id: string;
@@ -35,6 +38,7 @@ export default function Coin({
   const { data, error, isLoading } = useSWR(urls.coinData(id), {
     fallback,
   });
+  const statistics = getCoinPriceStatistics(data);
 
   if (isLoading) {
     return (
@@ -64,10 +68,15 @@ export default function Coin({
     );
   }
 
+  console.log(statistics);
   return (
-    <div>
-      <h1>{data.name}</h1>
-      <p>{data.description ? data.description.en : ''}</p>
+    <div className="flex mx-16 py-10">
+      <div className="w-3/5 mr-10">
+        <CoinInformation coin={data} />
+      </div>
+      <div className="w-2/5 ml-10">
+        <PriceStatistics coinName={data.name} statistics={statistics} />
+      </div>
     </div>
   );
 }

@@ -19,6 +19,7 @@ module.exports = {
         },
       },
     },
+    'storybook-addon-next-router',
   ],
   framework: '@storybook/react',
   core: {
@@ -42,6 +43,7 @@ module.exports = {
       '@pages': path.resolve(__dirname, '../src/pages'),
       '@stories': path.resolve(__dirname, '../src/stories'),
       '@styles': path.resolve(__dirname, '../src/styles'),
+      '@consts': path.resolve(__dirname, '../src/consts'),
     };
 
     return config;

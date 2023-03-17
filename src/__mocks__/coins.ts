@@ -1,4 +1,4 @@
-import { Coin, SearchCoin } from '@interfaces/coins';
+import { Coin, SearchCoin, Statistic } from '@interfaces/coins';
 
 export const coins: Coin[] = [
   {
@@ -128,5 +128,64 @@ export const cryptoCurrencies: SearchCoin[] = [
     market_cap_rank: 205,
     thumb: 'https://assets.coingecko.com/coins/images/26115/thumb/btcb.png',
     large: 'https://assets.coingecko.com/coins/images/26115/large/btcb.png',
+  },
+];
+
+export const statistics: Statistic[] = [
+  {
+    id: 'price',
+    label: 'Price',
+    value: '$26,674.00',
+  },
+  {
+    id: '24h-low-24h-high',
+    label: '24h Low / 24h High',
+    value: '$24,802.00 / $27,085.00',
+  },
+  {
+    id: '7d-low-7d-high',
+    label: '7d Low / 7d High',
+    value: '$24,802.00 / $27,085.00',
+  },
+  {
+    id: 'trading-volume',
+    label: 'Trading Volume',
+    value: '$57,009,919,159.00',
+  },
+  {
+    id: 'market-cap-rank',
+    label: 'Market Cap Rank',
+    value: '#1',
+  },
+  {
+    id: 'market-cap',
+    label: 'Market Cap',
+    value: '$517,011,186,274.00',
+  },
+  {
+    id: 'market-cap-dominance',
+    label: 'Market Cap Dominance',
+    value: '0.0%',
+  },
+  {
+    id: 'volume/market-cap',
+    label: 'Volume / Market Cap',
+    value: '$0.11',
+  },
+  {
+    id: 'all-time-high',
+    label: 'All-Time High',
+    value: '$69,045.00',
+    value2: '-61.2%',
+    colorValue2: 'text-red-500',
+    date: new Date('2021-11-10T14:24:11.849Z'),
+  },
+  {
+    id: 'all-time-low',
+    label: 'All-Time Low',
+    value: '$67.81',
+    value2: '39364.2%',
+    colorValue2: 'text-green-500',
+    date: new Date('2013-07-06T00:00:00.000Z'),
   },
 ];
