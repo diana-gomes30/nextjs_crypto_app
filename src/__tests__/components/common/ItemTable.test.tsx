@@ -1,10 +1,13 @@
 import { ItemTable } from '@components/common/ItemTable';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { coins } from '@mocks/coins';
+import mockRouter from 'next-router-mock';
+
+jest.mock('next/router', () => require('next-router-mock'));
 
 describe('ItemTable', () => {
-  test('Test data', () => {
+  it('Test data', () => {
     const coin = coins[0];
 
     render(

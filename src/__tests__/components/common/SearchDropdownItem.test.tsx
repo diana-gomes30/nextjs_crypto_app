@@ -7,7 +7,7 @@ import { SearchCoin } from '@interfaces/coins';
 describe('SearchDropdownItem', () => {
   const coin: SearchCoin = cryptoCurrencies[0];
 
-  test('Test data', () => {
+  it('Test data', () => {
     render(<SearchDropdownItem cryptoCurrency={coin} />);
 
     expect(screen.getByAltText('Coin Icon')).toHaveAttribute('src', coin.thumb);

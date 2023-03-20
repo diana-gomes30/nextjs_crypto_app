@@ -5,6 +5,8 @@ import { Table } from '@components/common/Table';
 import { columns } from '@consts/table';
 import { coins } from '@mocks/coins';
 
+jest.mock('next/router', () => require('next-router-mock'));
+
 describe('Table', () => {
   it('show table header', () => {
     render(<Table columns={columns} data={coins} />);
