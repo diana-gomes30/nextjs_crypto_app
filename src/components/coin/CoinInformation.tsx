@@ -18,7 +18,7 @@ export const CoinInformation = ({ coin }: CoinInformationProps) => {
   const marketInfos = getCoinMarketInfos(coin);
 
   return (
-    <div className=" text-light">
+    <div className=" text-light bg-secundary-dark-blue">
       <small className="bg-first-dark-blue rounded-md p-1">
         <b>Rank #{coin.market_cap_rank}</b>
       </small>
@@ -50,7 +50,7 @@ export const CoinInformation = ({ coin }: CoinInformationProps) => {
           {roundNumber(coin.market_data.price_change_percentage_24h)}%
         </small>
       </h1>
-      <div className="mt-10">
+      <div className="flex-auto mt-10">
         <CoinMarketInfo marketInfos={marketInfos} />
       </div>
       {coin.description && coin.description.en && (

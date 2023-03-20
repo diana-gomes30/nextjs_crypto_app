@@ -68,7 +68,6 @@ export default function Coin({
     );
   }
 
-  console.log(statistics);
   return (
     <div className="flex mx-16 py-10">
       <div className="w-3/5 mr-10">
