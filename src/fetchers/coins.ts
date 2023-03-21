@@ -6,6 +6,7 @@ const getCoins = async (numPerPage: number = 15, page: number = 1) => {
 
   const response = await fetch(url);
   const data = await response.json();
+  console.log(data);
   return data;
 };
 

@@ -21,10 +21,16 @@ describe('PriceStatistics', () => {
     expect(screen.getByText('All-Time Low')).toBeInTheDocument();
 
     expect(screen.getByText('$26,674.00')).toBeInTheDocument();
+    expect(
+      screen.getAllByText('$24,802.00 / $27,085.00')[0]
+    ).toBeInTheDocument();
     expect(screen.getByText('$57,009,919,159.00')).toBeInTheDocument();
     expect(screen.getByText('#1')).toBeInTheDocument();
     expect(screen.getByText('$517,011,186,274.00')).toBeInTheDocument();
     expect(screen.getByText('0.0%')).toBeInTheDocument();
     expect(screen.getByText('$0.11')).toBeInTheDocument();
+    expect(screen.getByText('$69,045.00')).toBeInTheDocument();
+    expect(screen.getByText('-61.2%')).toBeInTheDocument();
+    expect(screen.getByText('Nov 10, 2021')).toBeInTheDocument();
   });
 });

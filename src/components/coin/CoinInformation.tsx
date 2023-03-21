@@ -58,12 +58,12 @@ export const CoinInformation = ({ coin }: CoinInformationProps) => {
           <h1 className="mb-3">
             <b>What is {coin.name}?</b>
           </h1>
-          <p
-            className="justify-start"
+          <div
+            className="justify-start [&>a]:text-orange-500 [&>a]:underline"
             dangerouslySetInnerHTML={{
               __html: coin.description && coin.description.en,
             }}
-          ></p>
+          ></div>
         </div>
       )}
     </div>

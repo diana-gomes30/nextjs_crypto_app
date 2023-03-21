@@ -7,7 +7,7 @@ interface CoinMarketInfoProps {
 
 export const CoinMarketInfo = ({ marketInfos }: CoinMarketInfoProps) => {
   return (
-    <div className="bg-secundary-dark-blue text-light grid grid-cols-2 grid-rows-3 grid-flow-col gap-2">
+    <div className="bg-secundary-dark-blue text-light grid grid-cols-1 lg:grid-cols-2 grid-rows-6 lg:grid-rows-3 grid-flow-col gap-5">
       {marketInfos &&
         marketInfos.map((e) => <ItemCoinMarketInfo key={e.id} data={e} />)}
     </div>

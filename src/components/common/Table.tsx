@@ -7,6 +7,7 @@ interface TableProps<T> {
 }
 
 export const Table = <T,>({ columns, data }: TableProps<T>) => {
+  console.log(data);
   return (
     <div className="my-5 mx-0">
       <table className="table-auto w-full text-light text-lg border-collapse">
