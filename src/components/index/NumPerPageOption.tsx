@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 interface NumPerPageOptionProps {
   onClick: (value: number) => void;
@@ -10,6 +10,12 @@ export const NumPerPageOption = ({
   onClick,
   numPerPage,
 }: NumPerPageOptionProps) => {
+  const [value, setValue] = useState(numPerPage);
+
+  useEffect(() => {
+    onClick(value);
+  }, [value]);
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -17,7 +23,7 @@ export const NumPerPageOption = ({
           data-testid="num-per-page-button"
           className="inline-flex w-11 justify-center rounded-md bg-light px-4 py-2 text-sm font-medium text-first-dark-blue hover:bg-third-dark-blue hover:text-light focus:outline-none focus-visible:ring-2 focus-visible:ring-light focus-visible:ring-opacity-75"
         >
-          {numPerPage}
+          {value}
         </Menu.Button>
       </div>
       <Transition
@@ -34,7 +40,7 @@ export const NumPerPageOption = ({
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={() => onClick(15)}
+                  onClick={() => setValue(15)}
                   className={`${
                     active
                       ? 'bg-third-dark-blue text-light'
@@ -48,7 +54,7 @@ export const NumPerPageOption = ({
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={() => onClick(30)}
+                  onClick={() => setValue(30)}
                   className={`${
                     active
                       ? 'bg-third-dark-blue text-light'
@@ -62,7 +68,7 @@ export const NumPerPageOption = ({
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={() => onClick(50)}
+                  onClick={() => setValue(50)}
                   className={`${
                     active
                       ? 'bg-third-dark-blue text-light'
@@ -76,7 +82,7 @@ export const NumPerPageOption = ({
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={() => onClick(100)}
+                  onClick={() => setValue(100)}
                   className={`${
                     active
                       ? 'bg-third-dark-blue text-light'
@@ -90,7 +96,7 @@ export const NumPerPageOption = ({
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={() => onClick(150)}
+                  onClick={() => setValue(150)}
                   className={`${
                     active
                       ? 'bg-third-dark-blue text-light'

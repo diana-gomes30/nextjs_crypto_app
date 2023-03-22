@@ -69,7 +69,7 @@ export default function Home({
   }
 
   return (
-    <div className="w-3/4 m-auto">
+    <div className="w-3/4 m-auto pb-10">
       <div className="pt-7 pb-10">
         <TableOptions
           onChangeInput={handleChange}
