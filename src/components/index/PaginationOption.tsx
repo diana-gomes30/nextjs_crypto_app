@@ -10,7 +10,7 @@ interface PaginationOptionProps {
 
 export const PaginationOption = ({
   coinsPerPage,
-  totalCryptoCoins = 200,
+  totalCryptoCoins = 300,
   page = 1,
   onChangePage,
 }: PaginationOptionProps) => {
@@ -26,27 +26,20 @@ export const PaginationOption = ({
   }
 
   const pageNumbersBegin: number[] =
-    pageNumbers.length > 11 ? [1, 2, 3, 4, 5, 6, 7, 8] : [];
+    pageNumbers.length > 11 ? pageNumbers.slice(0, 7) : [];
+  const pageNumbersMiddle: number[] = Array.from(
+    { length: 5 },
+    (_, i) => numberPage - 2 + i
+  );
   const pageNumbersEnd: number[] =
-    pageNumbers.length > 11
-      ? [
-          pageNumbers[pageNumbers.length - 8],
-          pageNumbers[pageNumbers.length - 7],
-          pageNumbers[pageNumbers.length - 6],
-          pageNumbers[pageNumbers.length - 5],
-          pageNumbers[pageNumbers.length - 4],
-          pageNumbers[pageNumbers.length - 3],
-          pageNumbers[pageNumbers.length - 2],
-          pageNumbers[pageNumbers.length - 1],
-        ]
-      : [];
+    pageNumbers.length > 11 ? pageNumbers.slice(pageNumbers.length - 8) : [];
 
   const handleClick = (value: number) => {
     setNumberPage(value);
   };
 
-  const add10Pages = () => {
-    const auxValue = numberPage + 10;
+  const add1Pages = () => {
+    const auxValue = numberPage + 1;
     if (auxValue > pageNumbers.length) {
       setNumberPage(pageNumbers.length);
     } else {
@@ -54,8 +47,8 @@ export const PaginationOption = ({
     }
   };
 
-  const subtract10Pages = () => {
-    const auxValue = numberPage - 10;
+  const subtract1Pages = () => {
+    const auxValue = numberPage - 1;
     if (auxValue < 1) {
       setNumberPage(1);
     } else {
@@ -69,11 +62,11 @@ export const PaginationOption = ({
         <PaginationItem
           numberPage={numberPage}
           value={'«'}
-          handleClick={() => subtract10Pages()}
+          handleClick={subtract1Pages}
         />
         {pageNumbers && pageNumbers.length > 11 ? (
-          numberPage >= 5 &&
-          numberPage <= pageNumbers[pageNumbers.length - 5] ? (
+          numberPage > 5 &&
+          numberPage <= pageNumbers[pageNumbers.length - 6] ? (
             <>
               <PaginationItem
                 numberPage={numberPage}
@@ -86,31 +79,14 @@ export const PaginationOption = ({
                 handleClick={() => handleClick(pageNumbers[1])}
               />
               <PaginationItem numberPage={numberPage} value={'...'} />
-              <PaginationItem
-                numberPage={numberPage}
-                value={numberPage - 2}
-                handleClick={() => handleClick(numberPage - 2)}
-              />
-              <PaginationItem
-                numberPage={numberPage}
-                value={numberPage - 1}
-                handleClick={() => handleClick(numberPage - 1)}
-              />
-              <PaginationItem
-                numberPage={numberPage}
-                value={numberPage}
-                handleClick={() => handleClick(numberPage)}
-              />
-              <PaginationItem
-                numberPage={numberPage}
-                value={numberPage + 1}
-                handleClick={() => handleClick(numberPage + 1)}
-              />
-              <PaginationItem
-                numberPage={numberPage}
-                value={numberPage + 2}
-                handleClick={() => handleClick(numberPage + 2)}
-              />
+              {pageNumbersMiddle.map((number) => (
+                <PaginationItem
+                  key={number}
+                  numberPage={numberPage}
+                  value={number}
+                  handleClick={() => handleClick(number)}
+                />
+              ))}
               <PaginationItem numberPage={numberPage} value={'...'} />
               <PaginationItem
                 numberPage={numberPage}
@@ -127,7 +103,7 @@ export const PaginationOption = ({
                 }
               />
             </>
-          ) : numberPage < 5 ? (
+          ) : numberPage <= 5 ? (
             <>
               {pageNumbersBegin.map((number) => (
                 <PaginationItem
@@ -154,7 +130,7 @@ export const PaginationOption = ({
               />
             </>
           ) : (
-            numberPage > pageNumbers[pageNumbers.length - 5] && (
+            numberPage > pageNumbers[pageNumbers.length - 6] && (
               <>
                 <PaginationItem
                   numberPage={numberPage}
@@ -193,7 +169,7 @@ export const PaginationOption = ({
         <PaginationItem
           numberPage={numberPage}
           value={'»'}
-          handleClick={() => add10Pages()}
+          handleClick={add1Pages}
         />
       </ul>
     </div>

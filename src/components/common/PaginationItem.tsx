@@ -1,5 +1,5 @@
 interface PaginationItemProps {
-  numberPage: number;
+  numberPage?: number;
   value: number | string;
   handleClick?: (value: number | string) => void;
 }
