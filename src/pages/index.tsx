@@ -23,11 +23,18 @@ export default function Home({
 }: {
   fallback: Record<string, Coin[]>;
 }) {
-  const [options, setOptions] = useState({ numPerPage: 15, searchByValue: '' });
-  const [results, setResults] = useState<SearchResult>();
-  const { data, error, isLoading } = useSWR(urls.markets(options.numPerPage), {
-    fallback,
+  const [options, setOptions] = useState({
+    numPerPage: 15,
+    page: 1,
+    searchByValue: '',
   });
+  const [results, setResults] = useState<SearchResult>();
+  const { data, error, isLoading } = useSWR(
+    urls.markets(options.numPerPage, options.page),
+    {
+      fallback,
+    }
+  );
 
   const handleChange = async (searchValue: string) => {
     setResults(await getSearch(searchValue));
@@ -37,6 +44,13 @@ export default function Home({
     setOptions((prevValue) => ({
       ...prevValue,
       numPerPage: value,
+    }));
+  };
+
+  const changePage = (value: number) => {
+    setOptions((prevValue) => ({
+      ...prevValue,
+      page: value,
     }));
   };
 
@@ -76,6 +90,7 @@ export default function Home({
           results={results?.coins}
           options={options}
           onChangeSelect={changeNumPerPage}
+          onChangePage={changePage}
         />
       </div>
       <Table columns={columns} data={data} />

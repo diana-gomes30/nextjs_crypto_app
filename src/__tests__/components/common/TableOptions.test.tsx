@@ -16,6 +16,7 @@ describe('TableOptions', () => {
         results={[]}
         options={options}
         onChangeSelect={(value: number) => value}
+        onChangePage={(value: number) => value}
       />
     );
 
@@ -37,6 +38,7 @@ describe('TableOptions', () => {
         results={[]}
         options={options}
         onChangeSelect={(value: number) => value}
+        onChangePage={(value: number) => value}
       />
     );
 

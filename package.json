@@ -13,10 +13,13 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.12",
+    "@mui/material": "^5.11.14",
     "@storybook/addon-postcss": "^2.0.0",
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",

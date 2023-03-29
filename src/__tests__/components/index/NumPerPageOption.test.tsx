@@ -1,28 +1,27 @@
-import { render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { NumPerPageOption } from '@components/index/NumPerPageOption';
 
 describe('NumPerPageOption', () => {
-  it(`display's data`, () => {
-    const { rerender } = render(
-      <NumPerPageOption onClick={() => {}} numPerPage={15} />
-    );
+  it(`display's data`, async () => {
+    render(<NumPerPageOption onClick={() => {}} numPerPage={15} />);
 
     const menuMainButton = screen.getByRole('button');
     expect(menuMainButton).toHaveTextContent('15');
+    expect(screen.getAllByText('15')).toHaveLength(1);
     expect(menuMainButton).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByText('30')).not.toBeInTheDocument();
+    expect(screen.queryByText('50')).not.toBeInTheDocument();
+    expect(screen.queryByText('100')).not.toBeInTheDocument();
+    expect(screen.queryByText('150')).not.toBeInTheDocument();
 
-    rerender(<NumPerPageOption onClick={() => {}} numPerPage={30} />);
-    expect(menuMainButton).toHaveTextContent('30');
+    await act(async () => fireEvent.click(menuMainButton));
 
-    rerender(<NumPerPageOption onClick={() => {}} numPerPage={50} />);
-    expect(menuMainButton).toHaveTextContent('50');
-
-    rerender(<NumPerPageOption onClick={() => {}} numPerPage={100} />);
-    expect(menuMainButton).toHaveTextContent('100');
-
-    rerender(<NumPerPageOption onClick={() => {}} numPerPage={150} />);
-    expect(menuMainButton).toHaveTextContent('150');
+    expect(screen.getAllByText('15')).toHaveLength(2);
+    expect(screen.getByText('30')).toBeInTheDocument();
+    expect(screen.getByText('50')).toBeInTheDocument();
+    expect(screen.getByText('100')).toBeInTheDocument();
+    expect(screen.getByText('150')).toBeInTheDocument();
   });
 });
