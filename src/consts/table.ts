@@ -2,6 +2,11 @@ import { Column } from '@interfaces/table';
 
 export const columns: Column[] = [
   {
+    id: 'column01',
+    label: '',
+    align: 'center',
+  },
+  {
     id: 'column02',
     label: '#',
     align: 'left',

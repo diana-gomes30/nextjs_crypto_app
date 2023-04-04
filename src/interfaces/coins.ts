@@ -1,3 +1,11 @@
+import { ObjectId } from 'mongodb';
+
+export interface CoinDb {
+  _id?: ObjectId;
+  coinId: string;
+  coinName: string;
+}
+
 export interface Coin {
   id: string;
   market_cap_rank: number;

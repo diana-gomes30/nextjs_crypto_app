@@ -1,18 +1,21 @@
 import { getCoins, getSearch } from '@fetchers/coins';
 import { Table } from '@components/common/Table';
 import { TableOptions } from '@components/common/TableOptions';
-import { Coin, SearchResult } from '@interfaces/coins';
+import { Coin, CoinDb, SearchResult } from '@interfaces/coins';
 import { useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { urls } from '@fetchers/urls';
 import { columns } from '@consts/table';
+import { postCoinsDb, getCoinsDb, deleteCoinsDb } from '@fetchers/coinsDb';
 
 export const getServerSideProps = async () => {
   const coins = await getCoins();
+  const coinsDb = await getCoinsDb();
   return {
     props: {
       fallback: {
         [urls.markets()]: coins,
+        'http://localhost:3000/api/coins': coinsDb,
       },
     },
   };
@@ -35,6 +38,12 @@ export default function Home({
       fallback,
     }
   );
+  const {
+    data: dataWatchlist,
+    error: errorWatchlist,
+    isLoading: isLoadingWatchlist,
+  } = useSWR('http://localhost:3000/api/coins', { fallback });
+  const { mutate: mutateWatchlist } = useSWRConfig();
 
   const handleChange = async (searchValue: string) => {
     setResults(await getSearch(searchValue));
@@ -54,7 +63,44 @@ export default function Home({
     }));
   };
 
-  if (isLoading) {
+  const onWatchlist = async (id: string, name: string) => {
+    const coin: CoinDb = {
+      coinId: id,
+      coinName: name,
+    };
+
+    if (!dataWatchlist.coins.includes(id)) {
+      const coinsIds = [...dataWatchlist.coins, coin.coinId];
+      const options = {
+        optimisticData: coinsIds,
+        rollbackOnError(error: any) {
+          return error.name !== 'AbortError';
+        },
+      };
+      await mutateWatchlist(
+        'http://localhost:3000/api/coins',
+        postCoinsDb(coin),
+        options
+      );
+    } else {
+      const coinsIds = dataWatchlist.coins.filter((e: string) => e !== id);
+      const options = {
+        optimisticData: coinsIds,
+        rollbackOnError(error: any) {
+          return error.name !== 'AbortError';
+        },
+      };
+      await mutateWatchlist(
+        'http://localhost:3000/api/coins',
+        deleteCoinsDb(coin),
+        options
+      );
+    }
+  };
+
+  console.log(dataWatchlist.coins);
+
+  if (isLoading || isLoadingWatchlist) {
     return (
       <div className="flex h-screen w-full justify-center items-center">
         <h1 className="text-xl font-bold text-light">Loading...</h1>
@@ -62,7 +108,7 @@ export default function Home({
     );
   }
 
-  if (!data) {
+  if (!data || !dataWatchlist) {
     return (
       <div className="flex h-screen w-full justify-center items-center">
         <h1 className="text-xl font-bold text-light">
@@ -72,7 +118,7 @@ export default function Home({
     );
   }
 
-  if (error) {
+  if (error || errorWatchlist) {
     return (
       <div className="flex h-screen w-full justify-center items-center">
         <h1 className="text-xl font-bold text-light">
@@ -93,7 +139,12 @@ export default function Home({
           onChangePage={changePage}
         />
       </div>
-      <Table columns={columns} data={data} />
+      <Table
+        columns={columns}
+        data={data}
+        dataWatchlist={dataWatchlist.coins}
+        onWatchlist={onWatchlist}
+      />
     </div>
   );
 }

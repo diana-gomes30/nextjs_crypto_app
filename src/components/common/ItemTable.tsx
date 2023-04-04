@@ -3,9 +3,13 @@ import Image from 'next/image';
 import { formatToMoney, getColor, roundNumber } from '@/utils';
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 interface ItemTableProps<T> {
-  data: T;
+  data: Coin;
+  isSelected: boolean;
+  onWatchlist: (coinId: string, coinName: string) => void;
 }
 
 interface ComponentProps {
@@ -24,18 +28,32 @@ const Percentage = ({ children }: ComponentProps) => (
   </td>
 );
 
-export const ItemTable = <T,>({ data }: ItemTableProps<T>) => {
+export const ItemTable = <T,>({
+  data,
+  isSelected,
+  onWatchlist,
+}: ItemTableProps<T>) => {
   const router = useRouter();
   const coin = data as Coin;
 
   return (
     <tr
       key={coin.id}
-      className="cursor-pointer border-b-2 border-solid border-light text-light align-middle bg-first-dark-blue hover:bg-third-dark-blue"
-      onClick={() => router.push(`/coin/${coin.id}`)}
+      className="border-b-2 border-solid border-light text-light align-middle bg-first-dark-blue hover:bg-third-dark-blue"
     >
+      <td>
+        <FontAwesomeIcon
+          onClick={() => onWatchlist(coin.id, coin.name)}
+          icon={faStar}
+          className="cursor-pointer favorite-icon"
+          style={{ color: isSelected ? 'yellow' : '' }}
+        />
+      </td>
       <Text>{coin.market_cap_rank}</Text>
-      <td className="flex items-center p-2">
+      <td
+        className="cursor-pointer flex items-center p-2 hover:underline"
+        onClick={() => router.push(`/coin/${coin.id}`)}
+      >
         <Image
           className="w-5 h-5 mr-3"
           unoptimized

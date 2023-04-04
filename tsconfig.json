@@ -20,14 +20,16 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@mocks/*": ["src/__mocks__/*"],
+      "@tests/*": ["src/__tests__/*"],
       "@components/*": ["./src/components/*"],
+      "@consts/*": ["./src/consts/*"],
       "@fetchers/*": ["./src/fetchers/*"],
       "@interfaces/*": ["./src/interfaces/*"],
-      "@mocks/*": ["src/__mocks__/*"],
+      "@lib/*": ["./src/lib/*"],
       "@pages/*": ["./src/pages/*"],
-      "@stories/*": ["./src/stories/*"],
       "@styles/*": ["./src/styles/*"],
-      "@consts/*": ["./src/consts/*"],
+      "@stories/*": ["./src/stories/*"],
       "@/*": ["./src/*"]
     }
   },
