@@ -1,4 +1,4 @@
-import { Options, SearchResult } from '@interfaces/coins';
+import { SearchResult } from '@interfaces/coins';
 
 export enum IndexActionKind {
   NUM_PER_PAGE = 'NUM_PER_PAGE',
