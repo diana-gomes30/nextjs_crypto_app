@@ -43,7 +43,7 @@ export const Table = ({
             <ItemTable
               key={e.id}
               data={e}
-              isSelected={dataWatchlist?.includes(e.id)}
+              isSelected={dataWatchlist?.includes(e.id ?? '')}
               onWatchlist={onWatchlist}
             />
           ))}

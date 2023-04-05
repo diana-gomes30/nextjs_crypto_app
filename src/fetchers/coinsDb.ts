@@ -20,3 +20,13 @@ export async function deleteCoinsDb(data: CoinDb) {
     method: 'DELETE',
   });
 }
+
+export async function getCoinsWatchlist() {
+  const data = await fetch('http://localhost:3000/api/coins/markets', {
+    method: 'GET',
+  });
+
+  const result = await data.json();
+  console.log(result);
+  return result;
+}

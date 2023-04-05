@@ -7,6 +7,7 @@ import useSWR, { useSWRConfig } from 'swr';
 import { urls } from '@fetchers/urls';
 import { columns } from '@consts/table';
 import { postCoinsDb, getCoinsDb, deleteCoinsDb } from '@fetchers/coinsDb';
+import { useTest, useTest2 } from '@/hooks/useTest';
 
 export const getServerSideProps = async () => {
   const coins = await getCoins();
@@ -24,7 +25,7 @@ export const getServerSideProps = async () => {
 export default function Home({
   fallback,
 }: {
-  fallback: Record<string, Coin[]>;
+  fallback: Record<string, Coin[] | { coins: CoinDb[] }>;
 }) {
   const [options, setOptions] = useState({
     numPerPage: 15,
@@ -97,8 +98,6 @@ export default function Home({
       );
     }
   };
-
-  console.log(dataWatchlist.coins);
 
   if (isLoading || isLoadingWatchlist) {
     return (
