@@ -2,8 +2,8 @@ import { Table } from '@components/common/Table';
 import { columns } from '@consts/table';
 import { deleteCoinsDb, getCoinsWatchlist } from '@fetchers/coinsDb';
 import { Coin, CoinDb } from '@interfaces/coins';
-import useSWR, { useSWRConfig } from 'swr';
 import { useState } from 'react';
+import { useWatchlistSWR } from '@/hooks/useWatchlistSWR';
 
 export const getServerSideProps = async () => {
   const coins = await getCoinsWatchlist();
@@ -21,15 +21,10 @@ export default function Watchlist({
 }: {
   fallback: Record<string, Coin[] | { coins: string[] }>;
 }) {
-  const { data, error, isLoading } = useSWR(
-    'http://localhost:3000/api/coins/markets',
-    {
-      fallback,
-    }
-  );
-  const { mutate: mutateWatchlist } = useSWRConfig();
+  const { data, error, isLoading, mutateWatchlist } = useWatchlistSWR({
+    fallback,
+  });
   const [dataCoinsIds, setDataCoinsIds] = useState(data.map((e: Coin) => e.id));
-  console.log(dataCoinsIds);
 
   const onRemoveWatchlist = async (id: string, name: string) => {
     const coin: CoinDb = {

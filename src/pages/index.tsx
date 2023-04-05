@@ -1,13 +1,13 @@
 import { getCoins, getSearch } from '@fetchers/coins';
 import { Table } from '@components/common/Table';
 import { TableOptions } from '@components/common/TableOptions';
-import { Coin, CoinDb, SearchResult } from '@interfaces/coins';
-import { useState } from 'react';
-import useSWR, { useSWRConfig } from 'swr';
+import { Coin, CoinDb } from '@interfaces/coins';
+import { useReducer } from 'react';
 import { urls } from '@fetchers/urls';
 import { columns } from '@consts/table';
 import { postCoinsDb, getCoinsDb, deleteCoinsDb } from '@fetchers/coinsDb';
-import { useTest, useTest2 } from '@/hooks/useTest';
+import { useIndexSWR } from '@/hooks/useIndexSWR';
+import { IndexActionKind, reducer } from '@/reducers/reducerIndex';
 
 export const getServerSideProps = async () => {
   const coins = await getCoins();
@@ -22,46 +22,40 @@ export const getServerSideProps = async () => {
   };
 };
 
+const initialState = {
+  numPerPage: 15,
+  page: 1,
+  searchByValue: '',
+  results: { coins: [] },
+};
+
 export default function Home({
   fallback,
 }: {
   fallback: Record<string, Coin[] | { coins: CoinDb[] }>;
 }) {
-  const [options, setOptions] = useState({
-    numPerPage: 15,
-    page: 1,
-    searchByValue: '',
-  });
-  const [results, setResults] = useState<SearchResult>();
-  const { data, error, isLoading } = useSWR(
-    urls.markets(options.numPerPage, options.page),
-    {
-      fallback,
-    }
-  );
+  const [state, dispatch] = useReducer(reducer, initialState);
   const {
-    data: dataWatchlist,
-    error: errorWatchlist,
-    isLoading: isLoadingWatchlist,
-  } = useSWR('http://localhost:3000/api/coins', { fallback });
-  const { mutate: mutateWatchlist } = useSWRConfig();
+    data,
+    error,
+    isLoading,
+    dataWatchlist,
+    errorWatchlist,
+    isLoadingWatchlist,
+    mutateWatchlist,
+  } = useIndexSWR({ options: state, fallback });
 
   const handleChange = async (searchValue: string) => {
-    setResults(await getSearch(searchValue));
+    const value = await getSearch(searchValue);
+    if (value) dispatch({ type: IndexActionKind.RESULTS, payload: value });
   };
 
   const changeNumPerPage = (value: number) => {
-    setOptions((prevValue) => ({
-      ...prevValue,
-      numPerPage: value,
-    }));
+    dispatch({ type: IndexActionKind.NUM_PER_PAGE, payload: value });
   };
 
   const changePage = (value: number) => {
-    setOptions((prevValue) => ({
-      ...prevValue,
-      page: value,
-    }));
+    dispatch({ type: IndexActionKind.PAGE, payload: value });
   };
 
   const onWatchlist = async (id: string, name: string) => {
@@ -132,8 +126,8 @@ export default function Home({
       <div className="pt-7 pb-10">
         <TableOptions
           onChangeInput={handleChange}
-          results={results?.coins}
-          options={options}
+          results={state.results?.coins}
+          options={state}
           onChangeSelect={changeNumPerPage}
           onChangePage={changePage}
         />
