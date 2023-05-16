@@ -41,7 +41,7 @@ export default function Top10({
       coinId: id,
       coinName: name,
     };
-    console.log(id);
+
     if (dataWatchlist.coins && !dataWatchlist.coins.includes(id)) {
       const coinsIds = [...dataWatchlist.coins, coin.coinId];
       const options = {
@@ -110,7 +110,7 @@ export default function Top10({
       <Table
         columns={columns}
         data={data}
-        dataWatchlist={data}
+        dataWatchlist={dataWatchlist.coins}
         onWatchlist={onWatchlist}
       />
     </div>
