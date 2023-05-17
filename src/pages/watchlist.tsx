@@ -41,7 +41,7 @@ export default function Watchlist({
       },
     };
     await mutateWatchlist(
-      'http://localhost:3000/api/coins/markets',
+      'http://localhost:3000/api/coins',
       deleteCoinsDb(coin),
       options
     );
@@ -60,6 +60,15 @@ export default function Watchlist({
       <div className="flex h-screen w-full justify-center items-center">
         <h1 className="text-xl font-bold text-light">
           Is not possible to load
+        </h1>
+      </div>
+    );
+  } else if (data.length === 0) {
+    return (
+      <div className="flex h-screen w-full justify-center items-center">
+        <h1 className="text-xl font-bold text-light">
+          There are no coins in the watchlist or you have exceeded the rate
+          limit from Coingecko API
         </h1>
       </div>
     );

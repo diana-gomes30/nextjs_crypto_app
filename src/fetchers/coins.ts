@@ -5,8 +5,12 @@ const getCoins = async (numPerPage: number = 15, page: number = 1) => {
   const url = urls.markets(numPerPage, page);
 
   const response = await fetch(url);
-  const data = await response.json();
-  return data;
+  if (response.status === 200) {
+    const data = await response.json();
+    return data;
+  } else {
+    return [];
+  }
 };
 
 const getSearch = async (valueToSearch: string) => {
@@ -15,16 +19,24 @@ const getSearch = async (valueToSearch: string) => {
   const urlToSearchId = urls.search(valueToSearch);
 
   const response = await fetch(urlToSearchId);
-  const data: SearchResult = await response.json();
-  return data;
+  if (response.status === 200) {
+    const data: SearchResult = await response.json();
+    return data;
+  } else {
+    return null;
+  }
 };
 
 const getCoinData = async (coinId: string) => {
   const urlToCoinData = urls.coinData(coinId);
 
   const response = await fetch(urlToCoinData);
-  const data: CoinData = await response.json();
-  return data;
+  if (response.status === 200) {
+    const data: CoinData = await response.json();
+    return data;
+  } else {
+    return null;
+  }
 };
 
 export { getCoins, getSearch, getCoinData };

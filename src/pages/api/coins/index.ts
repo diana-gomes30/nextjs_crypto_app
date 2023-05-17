@@ -6,7 +6,11 @@ interface Return {
   coins: string[];
 }
 
-const url = process.env.MONGODB_URI;
+let url = process.env.MONGODB_URI;
+if (!url || url === '') {
+  url =
+    'mongodb+srv://defaultUser:defaultUser@cluster0.1ltuckx.mongodb.net/coinsDB?retryWrites=true&w=majority';
+}
 
 export const getCoinsDb = async () => {
   const client = new MongoClient(url ?? '');

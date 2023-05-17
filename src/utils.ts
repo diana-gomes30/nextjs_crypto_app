@@ -19,10 +19,12 @@ export const roundNumber = (number: number) => {
 };
 
 export const formatToMoney = (number: number) => {
-  return number.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
+  return number
+    ? number.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      })
+    : '';
 };
 
 export const formatToMoneyWithoutDecimals = (number: number) => {
