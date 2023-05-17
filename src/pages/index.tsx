@@ -16,7 +16,7 @@ export const getServerSideProps = async () => {
     props: {
       fallback: {
         [urls.markets()]: coins,
-        'http://localhost:3000/api/coins': coinsDb,
+        '/api/coins': coinsDb,
       },
     },
   };
@@ -72,11 +72,7 @@ export default function Home({
           return error.name !== 'AbortError';
         },
       };
-      await mutateWatchlist(
-        'http://localhost:3000/api/coins',
-        postCoinsDb(coin),
-        options
-      );
+      await mutateWatchlist(`/api/coins`, postCoinsDb(coin), options);
     } else {
       const coinsIds = dataWatchlist.coins.filter((e: string) => e !== id);
       const options = {
@@ -85,11 +81,7 @@ export default function Home({
           return error.name !== 'AbortError';
         },
       };
-      await mutateWatchlist(
-        'http://localhost:3000/api/coins',
-        deleteCoinsDb(coin),
-        options
-      );
+      await mutateWatchlist(`/api/coins`, deleteCoinsDb(coin), options);
     }
   };
 

@@ -19,7 +19,7 @@ export const useIndexSWR = ({
     data: dataWatchlist,
     error: errorWatchlist,
     isLoading: isLoadingWatchlist,
-  } = useSWR('http://localhost:3000/api/coins', { fallback });
+  } = useSWR(`/api/coins`, { fallback });
   const { mutate: mutateWatchlist } = useSWRConfig();
 
   return {

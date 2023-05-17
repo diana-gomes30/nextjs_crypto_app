@@ -50,11 +50,7 @@ export default function Top10({
           return error.name !== 'AbortError';
         },
       };
-      await mutateWatchlist(
-        'http://localhost:3000/api/coins',
-        postCoinsDb(coin),
-        options
-      );
+      await mutateWatchlist(`/api/coins`, postCoinsDb(coin), options);
     } else {
       const coinsIds = dataWatchlist.coins.filter((e: string) => e !== id);
       const options = {
@@ -63,11 +59,7 @@ export default function Top10({
           return error.name !== 'AbortError';
         },
       };
-      await mutateWatchlist(
-        'http://localhost:3000/api/coins',
-        deleteCoinsDb(coin),
-        options
-      );
+      await mutateWatchlist(`/api/coins`, deleteCoinsDb(coin), options);
     }
   };
 

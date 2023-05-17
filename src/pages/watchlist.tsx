@@ -10,7 +10,7 @@ export const getServerSideProps = async () => {
   return {
     props: {
       fallback: {
-        'http://localhost:3000/api/coins/markets': coins,
+        '/api/coins/markets': coins,
       },
     },
   };
@@ -40,11 +40,7 @@ export default function Watchlist({
         return error.name !== 'AbortError';
       },
     };
-    await mutateWatchlist(
-      'http://localhost:3000/api/coins',
-      deleteCoinsDb(coin),
-      options
-    );
+    await mutateWatchlist(`/api/coins`, deleteCoinsDb(coin), options);
   };
 
   if (isLoading) {

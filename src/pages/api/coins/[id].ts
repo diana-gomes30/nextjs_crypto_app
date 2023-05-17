@@ -1,5 +1,5 @@
 import { CoinDb } from '@interfaces/coins';
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const url = process.env.MONGODB_URI;

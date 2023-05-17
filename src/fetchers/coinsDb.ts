@@ -1,14 +1,17 @@
 import { CoinDb } from '@interfaces/coins';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+console.log(`First Url: ${baseUrl}`);
+
 export async function postCoinsDb(data: CoinDb) {
-  return await fetch('http://localhost:3000/api/coins', {
+  return await fetch(`${baseUrl}/api/coins`, {
     method: 'POST',
     body: JSON.stringify(data),
   });
 }
 
 export async function getCoinsDb() {
-  const data = await fetch('http://localhost:3000/api/coins', {
+  const data = await fetch(`${baseUrl}/api/coins`, {
     method: 'GET',
   });
 
@@ -16,13 +19,14 @@ export async function getCoinsDb() {
 }
 
 export async function deleteCoinsDb(data: CoinDb) {
-  return await fetch(`http://localhost:3000/api/coins/${data.coinId}`, {
+  console.log(`Url: ${baseUrl}`);
+  return await fetch(`${baseUrl}/api/coins/${data.coinId}`, {
     method: 'DELETE',
   });
 }
 
 export async function getCoinsWatchlist() {
-  const data = await fetch('http://localhost:3000/api/coins/markets', {
+  const data = await fetch(`${baseUrl}/api/coins/markets`, {
     method: 'GET',
   });
 
